@@ -4,19 +4,28 @@ const MyBtn = ({children, resClass, math, num, res, }) => {
 
 
 	function calc() {
-		if (math === 'plus') {
-     	res.setRes(+num.num1 + +num.num2)
-    }  else if(math === 'minus') {
-		 res.setRes(+num.num1 - +num.num2)
-	 } else if (math === 'multiply') {
-		 res.setRes(+num.num1 * +num.num2)
-	 } else if (math === 'divide') {
-		 res.setRes(+num.num1 / +num.num2)
-	 }
+
+		switch (math) {
+      case 'plus':
+        res.setRes(+num.num1 + +num.num2);
+        break;
+      case 'minus':
+        res.setRes(+num.num1 - +num.num2);
+        break;
+      case 'multiply':
+        res.setRes(+num.num1 * +num.num2);
+        break;
+      case 'divide':
+        res.setRes(+num.num1 / +num.num2);
+        break;
+
+      default: res.setRes(0);
+        break;
+    }
 	}
 	
 	return (
-    <div className={`btn ${resClass ? 'res' : ''} ${math ? 'math' : ''}`}>
+    <div className={`btn ${resClass && 'res'} ${math ? 'math' : ''}`}>
       <button onClick={calc}>{children}</button>
     </div>
   );
